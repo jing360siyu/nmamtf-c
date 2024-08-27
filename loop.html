@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="column" style="background-color:#FFF;">
+      <h2>南 无 阿 弥 陀 佛</h2>
+
+
+      <button onclick="document.location='noOfTimesDiv.html'">次数</button>
+      <button onclick="document.location='durationSetDiv.html'">时间</button>
+      <button onclick="document.location='loop.html'"><span>&#8734;</span>循环 </button>
+
+
+      <p><span>&#8734;</span> 循环 :- </p>
+
+
+        <button type="button" class="loopall" id="btnPlaylistloop" onclick="playlistloop()">播放
+        </button>
+        <button type="button" id="btnPause" onclick="stop()">停止</button>
+
+
+
+      </br>
+
+      <p id="demo6"></p>
+
+      <p id="demo7"></p>
+
+
+  
+      <br></br>
+
+
+<div id=hide>
+<label id="hours">00</label>
+<label id="colon">:</label>
+<label id="minutes">00</label>
+<label id="colon">:</label>
+<label id="seconds">00</label>
+</div>
+
+
+
+
+
+    </div>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="audioIcon">
+      <audio class="audioPlayer" id="myAudio" controls style="width:600px">
+        //
+        <source src="https://sites.google.com/site/themahabodhipractice/namoamitufo-chanting/NMAMTF-ZJ-X1.mp3"
+          type="audio/mp3">
+        <source src="NMAMTF-ZJ-X1.mp3" type="audio/mp3">
+    </div>
+
+    </audio>
+
+  </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+
+    var aud = document.getElementById("myAudio");
+
+    var a = 0;  
+
+    function playlistloop() {
+
+
+
+      aud.play();
+
+      aud.onended = function () {
+        aud.play();
+
+	a=a+1;
+
+	if (a=>0){
+   	document.getElementById("demo6").innerHTML = '计数 : ' + (1+a) ;
+	};
+	
+
+
+      };
+
+	start();
+
+ 
+  };
+
+
+
+
+var hoursLabel  =  document.getElementById("hours");
+        var minutesLabel = document.getElementById("minutes");
+        var secondsLabel = document.getElementById("seconds");
+        var totalSeconds = 0;
+
+	
+        var myInterval;
+
+	function start(){
+	myInterval = setInterval(setTime, 1000);
+	
+
+        function setTime()
+        {
+            ++totalSeconds;
+	    totalSeconds %= 86400;
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60)%60);
+    	    hoursLabel.innerHTML = pad(parseInt(totalSeconds/3600)%24);
+
+	    document.getElementById("demo7").innerHTML = "时间流逝 : " + pad(parseInt(totalSeconds/3600)%24) + ":" + pad(parseInt(totalSeconds/60)%60) + ":" + pad(totalSeconds%60)  ;
+	
+
+        }
+
+	}
+
+        function pad(val)
+        {
+            var valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+
+
+	function stop() 
+	{
+	  clearInterval(myInterval);
+	  aud.pause();
+	}
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .audioPlayer {
+      display: hide;
+    }
+
+
+
+    .audioIcon {
+      display: none;
+    }
+
+
+    #noOfTimesDiv {
+      display: none;
+    }
+
+
+    #durationSetDiv {
+
+      display: none;
+    }
+
+
+    #hideBtn {
+      display: none;
+    }
+
+    #hide {
+      display: none;
+    }
+
+    #toggle {
+      display: block;
+    }
+
+    #toggleV {
+      display: block;
+    }
+
+    #toggleU {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="row">
+    <div class="column" style="background-color:#FFF;">
+
+      <h2>南 无 阿 弥 陀 佛</h2>
+
+      <button onclick="document.location='noOfTimesDiv.html'">次数</button>
+      <button onclick="document.location='durationSetDiv.html'">时间</button>
+      <button onclick="document.location='loop.html'"><span>&#8734;</span>循环 </button>
+
+
+
+
+      <div id="toggle">
+
+      </div>
+
+
+
+
+      <p> 设置次数:-</p>
+      <input type="text" id="times" name="times">
+      <button type="button" onclick="myFunction()">定数</button>
+
+      <button type="button" onclick="timesPlay()">开始</button>
+
+      <button type="button" class="btnPlaylist" id="btnToggleV" onclick="myToggleV()">暂停</button>
+
+
+      <p id="demo"></p>
+      <p id="demo1"></p>
+      <p id="demo2"></p>
+      <p id="demo3"></p>
+      <p id="demox"></p>
+
+
+<div id=hide>
+<label id="hours">00</label>
+<label id="colon">:</label>
+<label id="minutes">00</label>
+<label id="colon">:</label>
+<label id="seconds">00</label>
+</div>
+
+    </div>
+
+    <div id="toggleV">
+
+    </div>
+
+
+
+    <br></br>
+
+
+
+
+
+
+
+    <div class="column" style="background-color:#FFF;">
+      </br>
+      </br>
+      </br>
+      </br>
+      </br>
+      <div class="audioIcon">
+        <audio class="audioPlayer" id="myAudio" controls style="width:600px">
+          //
+          <source src="https://sites.google.com/site/themahabodhipractice/namoamitufo-chanting/NMAMTF-ZJ-X1.mp3"
+            type="audio/mp3">
+          <source src="NMAMTF-ZJ-X1.mp3" type="audio/mp3">
+      </div>
+
+      </audio>
+
+    </div>
+  </div>
+
+
+
+  <script>
+
+    var a = document.getElementById("noOfTimesDiv");
+    var b = document.getElementById("durationSetDiv");
+
+    function noOfTimesDisplay() {
+
+      document.getElementById("times").value = "";
+      document.getElementById("time").value = "";
+      document.getElementById("demo").innerHTML = "";
+      document.getElementById("demo1").innerHTML = "";
+      document.getElementById("demo2").innerHTML = "";
+      document.getElementById("demo3").innerHTML = "";
+      document.getElementById("demo4").innerHTML = "";
+      document.getElementById("demo5").innerHTML = "";
+      document.getElementById("secondsPassed").innerHTML = "";
+
+      var a = document.getElementById("noOfTimesDiv");
+      var b = document.getElementById("durationSetDiv");
+      if (a.style.display === "block") {
+        a.style.display = "none";
+        b.style.display = "none";
+
+      } else {
+        a.style.display = "block";
+        b.style.display = "none";
+      }
+
+    }
+
+
+   
+
+
+
+    var aud = document.getElementById("myAudio");
+
+    function myFunction() {
+     
+
+      var x = document.getElementById("times").value;
+      document.getElementById("demo").innerHTML = "念诵设置为 " + x + " 次.";
+
+      var a = 0;
+
+      aud.onended = function () {
+        a = a + 1;
+
+        if (a == x) {
+          clearInterval(myInterval);
+          document.getElementById("times").value = "";
+          document.getElementById("demo2").innerHTML = x + " 次完成."
+
+        }
+
+        if (a < x) {
+          aud.play();
+          document.getElementById("demo1").innerHTML = '计数: ' + (1 + a);
+
+        }
+
+
+      };
+
+
+    };
+
+
+
+
+
+
+    function timesPlay() {
+      document.getElementById("demo2").innerHTML = "";
+      document.getElementById("demo3").innerHTML = "";
+      var x = document.getElementById("times").value;
+      if (x > 0) {
+        aud.play();
+      }
+        startx();
+    };
+
+
+    function pause() {
+      clearInterval(myInterval);
+      aud.pause();
+    };
+
+
+
+    function continuePlay() {
+      var x = document.getElementById("times").value;
+      if (x > 0) {
+        aud.play();
+        startx();
+      };
+
+    };
+
+
+
+
+
+   var hoursLabel  =  document.getElementById("hours");
+   var minutesLabel = document.getElementById("minutes");
+   var secondsLabel = document.getElementById("seconds");
+   var totalSeconds = 0;
+	
+   var myInterval;
+
+   function startx(){
+	myInterval = setInterval(setTime, 1000);
+	
+
+   function setTime(){
+            ++totalSeconds;
+	    totalSeconds %= 86400;
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60)%60);
+    	    hoursLabel.innerHTML = pad(parseInt(totalSeconds/3600)%24);
+
+	    document.getElementById("demox").innerHTML = "时间流逝: " + pad(parseInt(totalSeconds/3600)%24) + ":" + pad(parseInt(totalSeconds/60)%60) + ":" + pad(totalSeconds%60)  ;
+	
+
+        }
+
+	}
+
+        function pad(val)
+        {
+            var valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+
+
+
+
+
+
+    function myToggle() {
+
+      var u = document.getElementById("toggle");
+      if (u.style.display === "block") {
+        u.style.display = "none";
+        document.getElementById("btnToggle").innerHTML = "Play";
+        aud.pause();
+      } else {
+        u.style.display = "block";
+        document.getElementById("btnToggle").innerHTML = "Pause";
+        playlistloop();
+      }
+
+    }
+
+
+
+    function myToggleV() {
+
+      var v = document.getElementById("toggleV");
+      if (v.style.display === "block") {
+
+        v.style.display = "none";
+        document.getElementById("btnToggleV").innerHTML = "暂停";
+        continuePlay();
+        
+     } else {
+   
+        clearInterval(myInterval);
+        aud.pause();
+        document.getElementById("btnToggleV").innerHTML = "继续";
+        v.style.display = "block";
+
+      }
+
+    }
+
+
+
+    function myToggleU() {
+
+      var u = document.getElementById("toggleU");
+      if (u.style.display === "block") {
+
+        u.style.display = "none";
+        document.getElementById("btnToggleU").innerHTML = "Pause";
+        resumeTimer();
+
+      } else {
+
+        stopTimer();
+        document.getElementById("btnToggleU").innerHTML = "Resume";
+        u.style.display = "block";
+
+      }
+
+    }
+
+
+
+
+
+
+  </script>
+
+
+
+</body>
+
+</html>

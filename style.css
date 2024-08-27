@@ -1,0 +1,38 @@
+.audioPlayer {
+  display: hide;
+}
+
+
+
+.audioIcon {
+  display: none;
+}
+
+
+#noOfTimesDiv {
+  display: none;
+}
+
+
+#durationSetDiv {
+
+  display: none;
+}
+
+
+#hide{
+ 
+display: none;
+
+}
+
+
+
+
+#toggleV {
+  display: block;
+}
+
+#toggleU {
+  display: block;
+}

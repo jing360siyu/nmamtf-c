@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="column" style="background-color:#FFF;">
+      <h2>南 无 阿 弥 陀 佛</h2>
+
+
+      <button onclick="document.location='noOfTimesDiv.html'">次数</button>
+      <button onclick="document.location='durationSetDiv.html'">世间</button>
+      <button onclick="document.location='loop.html'"><span>&#8734;</span> 循环 </button>
+
+
+
+
+
+      <br></br>
+
+
+
+
+
+
+    </div>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="audioIcon">
+      <audio class="audioPlayer" id="myAudio" controls style="width:600px">
+        //
+        <source src="https://sites.google.com/site/themahabodhipractice/namoamitufo-chanting/NMAMTF-ZJ-X1.mp3"
+          type="audio/mp3">
+        <source src="NMAMTF-ZJ-X1.mp3" type="audio/mp3">
+    </div>
+
+    </audio>
+
+  </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    var aud = document.getElementById("myAudio");
+    function playlistloop() {
+
+      aud.play();
+
+      var c = 0;
+
+      aud.onended = function () {
+        aud.play();
+      };
+
+    };
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
